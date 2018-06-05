@@ -75,15 +75,14 @@ def look_for_ip4(some_string):
 # A total of (4) functions will be used to run tests on possible IP addresses. There are other variations, but this will be 
 # sufficient for the file that needs to be read.
 
-
 # The purpose of the functions above are to test the contents that will be saved. Basically, a 'for' loop below will place 
 # indexed items into a list. They are indexed based on the format of the ssh.log.txt file, where index 2 & 4 display the inbound # and target IP addresses respectively.
+
 
 
 source_file = open('ssh.log.txt', 'r')  # This is the file that will be scanned.
 new_file = open('scanners_found.txt', 'w')  # This file will be used to store our results
 new_file.close()
-
 
 line_count = 0  
 inbound_ip = [] # This container will hold inbound ip addresses.
@@ -91,6 +90,12 @@ target_ip = []  # Likewise, this one will hold the target ip addresses.
 inbound_malicious = []  # After running the functions on every line at index 2, any contents that fail my tests will be placed                           # here. However, the whole line and its number will be saved, not just the suspect IP.
 target_malicious = []   # This container will hold the same information, but for index 4. 
 
+new_file = open('scanners_found.txt', 'a') 
 
-new_file = open('scanners_found.txt', 'a')
+for line in source_file:
+    line_count += 1
+    some_content = []
+    some_content = line.split('\t') # The format of the log file is split by tabs, in which we can use this to our advantage! We                                 # simply convert the line into a list, and we call on the appropriate index.
 
+    inbound_ip += ['Line ' + str(line_count) + ': ' + some_content[2]]
+    target_ip += ['Line ' + str(line_count) + ': ' + some_content[4]]
