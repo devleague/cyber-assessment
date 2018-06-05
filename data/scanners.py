@@ -121,3 +121,25 @@ for line in source_file:
 #     print(x) 
 # for y in target_ip: #----- Uncomment this to see in command line.
 #     print(x)
+
+
+
+new_file = open('scanners_found.txt', 'a')
+new_file.write(str(line_count) + ' Scans were performed.\n\n\nInbound IPs Adresses:\n')
+for x in inbound_ip:   
+    new_file.write(x + '\n')
+
+new_file.write('\n\n\nTarget Ip Adresses:\n')
+for y in target_ip:   
+    new_file.write(y + '\n')
+
+new_file.write('\n\n\nSuspected Malicious Activity:\n')
+for x in inbound_malicious:
+    new_file.write(x + '\n')
+
+for y in target_malicious:
+    new_file.write(y + '\n')
+
+source_file.close()
+new_file.close()
+
