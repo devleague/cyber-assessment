@@ -99,3 +99,25 @@ for line in source_file:
 
     inbound_ip += ['Line ' + str(line_count) + ': ' + some_content[2]]
     target_ip += ['Line ' + str(line_count) + ': ' + some_content[4]]
+
+
+
+# The 'if' statement below will run tests on each index where an IP address 'should' be. If all tests fail to qualify that
+# particular string as an IP, it is clear that we have some error. The entire line will be stored to the respective container, 
+# and it will be saved to our file later. 
+
+    if look_for_ip1(some_content[2]) == False and look_for_ip2(some_content[2]) == False and look_for_ip3(some_content[2]) == False and look_for_ip4(some_content[2]) == False: 
+        inbound_malicious += ['Line ' + str(line_count) + ': ' + line]
+        # print(line) #----- Uncomment this to see in command line.
+
+# The 'elif' statement will run the same tests on index 4. All instances do occur with bad IPs on both index 2 and 4, but this is
+# just for exhaustive purposes. Basically, this test is likely not to run because failed Ips are captured by the 'if' statement # first.
+
+    elif look_for_ip1(some_content[4]) == False and look_for_ip2(some_content[4]) == False and look_for_ip3(some_content[4]) == False and look_for_ip4(some_content[4]) == False:
+        target_malicious += ['Line ' + str(line_count) + ': ' + line]
+        # print(line) #----- Uncomment this to see in command line.
+
+# for x in inbound_ip: #----- Uncomment this to see in command line.
+#     print(x) 
+# for y in target_ip: #----- Uncomment this to see in command line.
+#     print(x)
