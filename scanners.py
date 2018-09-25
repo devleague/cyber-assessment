@@ -3,21 +3,30 @@ with open('./devleague_discovery/ssh.log.txt', 'r') as file:
 
   # all lines
   all_lines = file.readlines()
+
+  # scan count
+  scan_count = len(all_lines)
+  scanners_found = open('scanners_found.txt', 'a+')
+  scanners_found.write('[scan attempts] ')
+  scanners_found.write(str(scan_count) + '\n\n')
+
+  # scan origin hosts
+  scanners_found.write('[scan origin hosts]\n')
+  scanners_found.write('\txxx.xxx.x.xx')
+  scanners_found.close()
+
   for i, lines in enumerate(all_lines):
-    scan_count = i
+    scan_number = i
     each_line = all_lines[i]
 
+    print('EACH LINE', each_line)
+  
     # found_scans = open('scanners_found.txt', 'a+')
     # found_scans.write(each_line)
-
-    print('EACH LINE', each_line)
-
-  found_scan_count = open('scanners_found.txt', 'a+')
-  found_scan_count.write('Scan Count\n')
-  found_scan_count.write(str(scan_count))
-  found_scan_count.close()
-  print('SCAN COUNT', scan_count)
   
+
+
+
   # print(len(all_lines))
   # print(all_lines, 'ALL LINES')
 

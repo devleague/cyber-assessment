@@ -1,2 +1,4 @@
-Scan Count
-7142
+[scan attempts] 7143
+
+[scan origin hosts]
+	xxx.xxx.x.xx
