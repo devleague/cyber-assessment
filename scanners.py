@@ -1,4 +1,6 @@
 # import ssh.log
+# origin (new port each connection) = user machine that attempted scan
+# destination (has reserved port) = machine that user attempted to scan
 with open('./devleague_discovery/ssh.log.txt', 'r') as file:
 
   # all lines
@@ -12,6 +14,10 @@ with open('./devleague_discovery/ssh.log.txt', 'r') as file:
 
   # scan origin hosts
   scanners_found.write('[scan origin hosts]\n')
+  scanners_found.write('\txxx.xxx.x.xx\n\n')
+
+  # scan destination hosts
+  scanners_found.write('[scan destination hosts]\n')
   scanners_found.write('\txxx.xxx.x.xx')
   scanners_found.close()
 

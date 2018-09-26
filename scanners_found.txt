@@ -2,3 +2,6 @@
 
 [scan origin hosts]
 	xxx.xxx.x.xx
+
+[scan destination hosts]
+	xxx.xxx.x.xx
