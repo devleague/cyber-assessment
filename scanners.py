@@ -2,6 +2,7 @@
 # destination (has reserved port) = machine that user attempted to scan
 
 # import ssh.log
+print('SCAN START')
 with open('./devleague_discovery/ssh.log.txt', 'r') as file:
 
   # all lines
@@ -20,6 +21,10 @@ with open('./devleague_discovery/ssh.log.txt', 'r') as file:
   # scan origin hosts - header
   scanners_found.write('[scan origin hosts]\n')
 
+  # create scanner_hashed_ip.txt if doesnt exist in append
+  scanner_hashed_ip = open('scanners_hashed_ip.txt', 'a+')
+  scanner_hashed_ip.write('[hashed scan attempts]\n')
+
   # write all origin ip
   for line in all_lines:
     # split line values into list
@@ -34,7 +39,10 @@ with open('./devleague_discovery/ssh.log.txt', 'r') as file:
     # questionable ips
     # print('LENGTH', len(scan_origin))
     if(len(scan_origin) > 15):
-      print('WHO DIS?!', scan_origin)
+      print('- WARNING -   ', scan_origin, '   - WARNING -')
+
+      # write hashed ip scan attempts
+      scanner_hashed_ip.write('\t' + scan_origin + '\n')
 
   # scan destination hosts - header
   scanners_found.write('[scan destination hosts]\n')  
@@ -47,4 +55,5 @@ with open('./devleague_discovery/ssh.log.txt', 'r') as file:
     # print('DESTINATION', scan_destination + '\n')
     scanners_found.write('\t' + scan_destination + '\n')
 
+  print('SCAN COMPLETE')
   scanners_found.close()
