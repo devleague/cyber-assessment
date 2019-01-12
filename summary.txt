@@ -1,0 +1,3 @@
+1. After iterpreting the log file, and figuring what data is which, I needed to figure out how to break each lines (each seperate scan) into a list and break those lines (scans) down further into the data points of each.
+
+2. After counting the amount of scans and populating each different from and to IP or host of the scans into a file, I did notice the port they are also attempting to access through is listed. Those ports could be included in the report as well as the amount of times each port and each IP or host appears. Then those could be checked into or more closely monitored.
