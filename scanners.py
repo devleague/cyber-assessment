@@ -4,6 +4,9 @@ target_ips = []
 mal_traffic = 0
 mal_target_ip = []
 mal_source_ip = []
+successful_breaches = 0
+successful_mal_breaches_source_ip = []
+successful_mal_breaches_target_ip = []
 
 input_file = open('data/ssh.log.txt')
 
@@ -32,28 +35,39 @@ for line in input_file:
   
   if target_ip not in target_ips:
     target_ips.append(target_ip)
+
+  if 'success' in line:
+    successful_breaches = successful_breaches + 1
+    if source_ip not in successful_mal_breaches_source_ip:
+      successful_mal_breaches_source_ip.append(source_ip)
+    if target_ip not in successful_mal_breaches_target_ip:
+      successful_mal_breaches_target_ip.append(target_ip)  
   
 output_file = open('./data/scanners_found.txt', 'w')
 output_file.write('Scan results\n\n')
 output_file.write('Total records: ' + str(row_count) + '\n')
-output_file = open('./data/scanners_found.txt', 'a')
 output_file.write('\n\nSource IP addresses\n\n')
 for ip in source_ips:
   output_file.write(str(ip) + '\n')
-output_file = open('./data/scanners_found.txt', 'a')
 output_file.write('\n\nTarget IP addresses\n\n')
 for ip in target_ips:
   output_file.write(str(ip) + '\n')
-output_file = open('./data/scanners_found.txt', 'a')
 output_file.write('\n\nTotal malicious traffic\n\n')
-output_file.write(str(mal_traffic) + '\n')
+output_file.write('Total malicious traffic found: ' + str(mal_traffic) + '\n')
 output_file.write('\n\nMalicious Attacked Target IP Address\n\n')
 for ip in mal_target_ip:
     output_file.write(str(ip) + '\n')
 output_file.write('\n\nMalicious Source IP Address\n\n')
 for ip in mal_source_ip:
   output_file.write(str(ip) + '\n')
-
+output_file.write('\n\nSuccessful Malicious Breaches\n\n')
+output_file.write('Total Successful Breaches: ' + str(successful_breaches) + '\n')
+output_file.write('\n\nSource IP address of successful breach\n\n')
+for ip in successful_mal_breaches_source_ip:
+  output_file.write(str(ip) + '\n')
+output_file.write('\n\nTarget IP address of successful breach\n\n')
+for ip in successful_mal_breaches_target_ip:
+  output_file.write(str(ip) + '\n')    
 
 
 
